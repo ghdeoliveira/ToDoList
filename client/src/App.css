@@ -7,88 +7,202 @@
   }
 }
 
+@keyframes slide-in {
+  from {
+      left: 0;
+  }
+  to {
+      left: 50%;
+  }
+}
+
+@keyframes slide-out {
+  from {
+      left: 50%;
+  }
+  to {
+      left: 0;
+  }
+}
+
 * {
   box-sizing: border-box;
 }
 
-.pending {
-  &::before {
-    font-family: "Material Symbols Outlined";
-    content: "autorenew";
-    color: #f1c40f;
-    animation: spin 2s linear infinite;
-  }
+:root {
+  --text-color: white;
+  --bg-url: url(./bg-desktop.jpg);
+  --surface-color: rgba(255, 255, 255, 0.10);
+  --stroke-color: rgba(255, 255, 255, 0.50);
+  --surface-color-hover: rgba(255, 255, 255, 0.05);
+  --stroke-color-hover: white;
+  --switch-bg-url: url(./moon-stars.svg);
 }
 
-.synced {
-  &::before {
-    font-family: "Material Symbols Outlined";
-    content: "check_circle";
-    color: #2ecc71;
-  }
+.light {
+  --text-color: black;
+  --bg-url: url(./bg-desktop-light.jpg);
+  --surface-color: rgba(0, 0, 0, 0.05);
+  --stroke-color: rgba(0, 0, 0, 0.5);
+  --surface-color-hover: rgba(0, 0, 0, 0.02);
+  --stroke-color-hover: black;
+  --switch-bg-url: url(./sun.svg);
 }
 
-.error {
-  &::before {
-    font-family: "Material Symbols Outlined";
-    content: "error";
-    color: #e74c3c;
-  }
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s, color 0.3s;
+  background: var(--bg-url)
+              no-repeat
+              top center
+              /cover;
+  height: 100vh;
+}
+
+body * {
+  font-family: 'Inter', sans-serif;
+  color: var(--text-color);
+
+}
+
+h1 {
+  text-align: center;
+}
+
+.pending::before {
+  font-family: "Material Symbols Outlined";
+  content: "autorenew";
+  font-size: 20px;
+  color: #f1c40f;
+  animation: spin 2s linear infinite;
+}
+
+.synced::before {
+  font-family: "Material Symbols Outlined";
+  font-size: 20px;
+  content: "check_circle";
+  color: #2ecc71;
+}
+
+.error::before {
+  font-family: "Material Symbols Outlined";
+  content: "error";
+  font-size: 20px;
+  color: #e74c3c;
 }
 
 .input-action {
-  width: 100%;
+  background-color: var(--surface-color);
+  display: flex;
+  text-align: center;
+  width: 80%;
+  margin: auto;
+  font-size: 1rem;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 3px;
 }
 
-ul,
-li {
+.input-action:hover {
+  background-color: var(--surface-color-hover);
+}
+
+ul {
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
 li {
-  display: flex;
-  gap: .25rem;
-  align-items: center;
+  background-color: var(--surface-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin: 1rem;
-
-  & input {
-    flex-grow: 1;
-  }
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
 }
 
-.input-action,
-li > * {
+li::before {
+  display: flex;
+  align-items: center;
+}
+
+li button, li input {
   font-size: 1rem;
-  padding: .2rem 1rem;
-  background-color: transparent;
-  border-radius: 2px;
-  border: 1px solid rgba(0 0 0 / .5);
-  position: relative;
-  overflow: hidden;
+  padding: 0.3rem;
+  border: 1px solid #ddd;
+  border-radius: 3px;
 }
 
-li > span {
-  min-width: 250px;
+li input {
+  width: 100%;
+  background-color: var(--surface-color);
+}
+
+li input:hover {
+  background-color: var(--surface-color-hover);
+}
+
+.material-symbols-outlined {
+  display: flex;
+  align-items: center;
+  font-size: 22px;
 }
 
 li button {
+  border-radius: 50%;
+  border-color: var(--stroke-color);
   cursor: pointer;
-  
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    height: 100%;
-    background-color: rgba(0 0 0 / .05);
-    transition: .3s ease-in-out;
-    transform: translateY(100%);
-  }
+  background-color: var(--surface-color);
+  color:black;
+}
 
-  &:hover {
-    &::before {
-      transform: translateY(0);
-    }
-  }
+li button:hover {
+  background-color: #c0392b;
+  color: #f0f0f0;
+}
+
+/* switch */
+#switch {
+  position: relative;
+  width: 64px;
+  margin: 40px auto;
+}
+
+#switch button {
+  width: 32px;
+  height: 32px;
+  background: white var(--switch-bg-url) no-repeat center;
+  border: 0;
+  border-radius: 50%;
+
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  left: 0;
+  transform: translateY(-50%);
+
+  animation: slide-out 0.3s;
+}
+
+.light #switch button {
+  animation: slide-in 0.3s forwards;
+}
+
+#switch button:hover {
+  outline: 8px solid var(--surface-color-hover);
+}
+
+#switch span {
+  display: block;
+  height: 24px;
+  width: 64px;
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 9999px;
 }

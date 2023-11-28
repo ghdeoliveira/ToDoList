@@ -42,10 +42,11 @@ export default function (props: TProps) {
       {/* <li className="error">error</li> */}
       {todolist.map((todo, _key) =>
         <li ref={todo.ref} key={todo.id} data-id={todo.id} className={todo.id < 0 ? "pending" : "synced"}>
-          <button data-id={todo.id} onClick={removeItem}>remove</button>
           <input data-id={todo.id} defaultValue={todo.text} onKeyDown={keyDown} />
+          <button data-id={todo.id} onClick={removeItem}><span className="material-symbols-outlined">delete</span></button>
         </li>
       )}
     </ul>
   </>
+
 }

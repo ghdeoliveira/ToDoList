@@ -1,4 +1,3 @@
-# 2023-IFC-BSI21-WebDev2
 # ToDoList
 
 - NodeJS/NPM
@@ -18,3 +17,8 @@ npm install
 ```sh
 npm run dev
 ```
+
+# Novas Features
+
+- Pesquisa itens da lista de tarefas
+- Switch Light Mode / Dark Mode
