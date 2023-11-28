@@ -34,6 +34,6 @@ export default function (props: TProps) {
   }
 
   return <>
-    <input className="input-action" type="text" placeholder="o que você fará depois?" onKeyDown={onKeyDown} />
+    <input className="input-action" type="text" placeholder="&#xf055;     Adicionar tarefas..." onKeyDown={onKeyDown} />
   </>
 }

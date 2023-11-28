@@ -11,10 +11,10 @@ export default function Search({ setSearchTerm }: SearchProps) {
 
   return (
     <input
-      className="input-action"
+      className="input-search"
       type="text"
-      placeholder="Pesquisar tarefas..."
+      placeholder="&#128270;    Pesquisar tarefas..."
       onChange={handleSearchChange}
-    />
+    /> 
   );
 }

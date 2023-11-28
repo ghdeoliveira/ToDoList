@@ -93,19 +93,22 @@ h1 {
   color: #e74c3c;
 }
 
-.input-action {
+.input-action, .input-search {
+  font-family: Arial, FontAwesome;
   background-color: var(--surface-color);
   display: flex;
   text-align: center;
   width: 80%;
   margin: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
   font-size: 1rem;
   padding: 0.5rem;
   border: 1px solid #ddd;
-  border-radius: 3px;
+  border-radius: 35px;
 }
 
-.input-action:hover {
+.input-action:hover, .input-search:hover {
   background-color: var(--surface-color-hover);
 }
 
@@ -122,7 +125,7 @@ li {
   padding: 1rem;
   display: flex;
   flex-direction: row;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
 li::before {
@@ -140,6 +143,8 @@ li button, li input {
 li input {
   width: 100%;
   background-color: var(--surface-color);
+  border-radius: 35px;
+  padding-left: 12px;
 }
 
 li input:hover {
